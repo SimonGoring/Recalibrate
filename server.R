@@ -91,7 +91,12 @@ shinyServer(function(input, output) {
       x$Percentile <- rownames(x)
       colnames(x)[1:2] <- c('Minimum', 'Maximum')
       
-      xtable::xtable(x, caption = "Calibrated Radiocarbon Age")
+      rec_table <- xtable::xtable(x, caption = "Calibrated Radiocarbon Age")
+    } else {
+      rec_table <- xtable::xtable(data.frame(Minimum = "Lower Bound \nof Region",
+                                             Maximum = "Upper Bound \nof Region",
+                                             Percentile = "Percent of\nTotal 95% CI"), 
+                                  caption = "Calibrated Radiocarbon Age")
     }
   }, spacing = 's', rownames = FALSE, striped = TRUE)
 
